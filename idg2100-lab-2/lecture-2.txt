@@ -1,0 +1,26 @@
+JavaScript booster class
+capitals game
+
+Ex. 1: Async 
+    try, catch, await
+
+Ex. 2: Map function
+    try, catch, await
+
+Ex. 3: Filter function
+    (the same, just more)
+
+
+Web API: Application Programming Interface
+
+try {
+    block of code to try
+}
+catch(err) {
+    block of code to handle errors
+}
+
+fetch(file) {
+    .then(x => x.text())
+    .then(y => myDisplay(y));
+}
