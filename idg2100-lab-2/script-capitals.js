@@ -3,6 +3,7 @@ let countries = [];
 let score = 0;
 //Tracks the number of correct guesses made by the user, starts at 0
 
+/*
 async function fetchCountries() {
 //async function that fetches country data from the API usin fetch in the try bit
     const message = document.querySelector("#statusMessage");
@@ -24,8 +25,29 @@ async function fetchCountries() {
         //Displays this error message if the network is down or the API is unreachable
         message.innerHTML = "It didn't work " + err;
     }
-}
+}*/
 //when the data is successfully fetched and stored, the game begins with the startNewRound function
+
+const fetchCountries = async(url) => {
+    const message = document.querySelector("#statusMessage");
+
+    try {
+        const response = await fetch(url);
+        //fetch the url
+
+        if(!response.ok){
+        //if the response is not ok/correct it will throw the new error
+            throw new Error('Network issues');
+        }
+        countries = await response.json();
+        //the data is parsed intp JSON and stored in the countries array
+    } 
+    catch(err) {
+        //Displays this error message if the network is down or the API is unreachable
+        message.innerHTML = "It didn't work " + err;
+    }
+}
+
 
 function startNewRound() {
 //calls on getRandomCountry to select a random country
@@ -87,5 +109,5 @@ function checkGuess() {
 document.querySelector("#submit").addEventListener("click", checkGuess);
 //submits the user's guess when they click on the submit button
 
-window.onload = fetchCountries;
+window.onload = fetchCountries("https://restcountries.com/v3.1/all");
 //runs the fetchCountries function when the page loads
