@@ -1,0 +1,164 @@
+...
+
+Common API approaches
+
+    REST (Represenrational State Transfer): 
+    Asking for a resource
+    Can return a resource in any format, but in practice often JSON
+    has no formal way to define endpoints
+    Relies on HTTP
+    A resource is asked for by a combination of a URI and HTTP method
+    methods often reffered to as vebs:
+        GET to ask for a resource
+        PUT to create a resource
+        POST to modify a resource
+        DELETE to delete a resource
+    Examples:
+        /api/users/{id}/posts
+        /api/users/{id}/posts/{postID}
+        /api/orders/{id}/items
+        /api/products/{id}/reviews
+        /api/categories/{id}/products
+
+    SOAP (Simple Object Access Protocol):
+    calling method
+    Precise endpoint description with WSDL(Wb Services Description Language), suitable for automatic code generation
+    relies om XML
+    Protocol agnostic
+
+    GraphQL
+
+NodeJS
+
+    A runtime environment that allows running JavaScript ...
+
+    JavaScript runtime environment:
+    Where your program will be executed
+
+    Asyncronous:
+    A non-blocking, architecture, so the execution of one task isn't dependent on another
+
+    Event-driven:
+    The dominant paradigm used in graphical user interfaces applications and network servers
+
+    Non-blocking:
+    A technique used to improve the responsiveness of an application by allowing it to perform 
+    multiple I/O operations simultaneously without blocking
+
+    Single threaded:
+    The execution of code occurs sequentially, one instruction after another, within a single thread of execution
+
+    Suitable for what situations?:
+    Good for:
+        Non-blocking
+        Event-driven
+        Data-intensive
+        I/O intensive
+
+    Less so for:
+        comutation intensive uses
+
+    NodeJS Advantages:
+    Enables JS full-stack development (same language Front-end and Back-end)
+    Front and back end are easier kept in sync
+    ..
+    ..
+    ..
+
+    Runnin NodeJS:
+    either with CLI(Command Line Interface)
+    or as scripts
+
+    NodeJS Modules
+    commonJs:
+    const module = require("moduleNameOrPath");
+    module.exports= {object};
+
+    EMS modules (Engine Management System)
+    Import module from "moduleNameOrPath";
+    export{object};
+
+    NodeJS Globals:
+    Resemble the in-browser globals (e.g., setTimeout and console.log)
+    Lack everything DOM and window-related
+    __dirname
+    __filename
+    process
+
+    Memory leak: 
+    Occurs when a process allocates memory from the paged or nonpaged pool, but doesn't free the memory.
+    An application asks for more memory, but doesn't release it back.
+
+    NodeJS console:
+        log
+        warn
+        error
+        trace 
+        assert
+    (can style output with css??)
+
+    NodeJS path 
+    You put path.(join, resolve, normalize, etc); so ex. path.join
+
+    join:
+    used to join together path bits
+
+    resolve:
+
+    normalize:
+    A function to "beautify" the path to a clean absolute path
+
+    \ on Windows
+    / on POSIX
+
+    NodeJS fs (file system) 
+        readFile
+        writeFile
+        access
+        stat 
+        readdir
+        mkdir
+
+    callbacks
+
+    NodeJS HTTPS
+        createServer
+        request
+        IncomingMessage
+            for bigger requests/continous data streams(?)
+        OutgoingMessage
+
+    fetch is good for small requests
+
+stacktrace:
+A report of the active stack frames at a certain point in time during the execution of a program
+Like going through the layers of an onion from the centre out.
+
+WebSocket:
+The WebSocket object provide the API for creating and managing a WebSocket connection to a server, 
+as well as for sending and recieving data on the connection
+To construct a WebSocket, use the WebSocket() constructor
+When you need to finish a transfer between the server?
+
+http default port: 80
+
+Useful to Look at:
+mdn
+nodejs.org
+JS modules (on mdn)
+    Exporting module features
+    Importing module features
+nodejs.org (globals)
+    process.env 
+    process.memoryUsage.rss()
+    process.argv
+    process.on
+    Event: 'exit'
+    path
+console (on mdn)
+callback (nodejs.org)
+    fs.readFilePath([])
+    fsPromises.readFile([])
+http-createServer (nodejs.org)
+    http.request
+    server.listen(8000)
