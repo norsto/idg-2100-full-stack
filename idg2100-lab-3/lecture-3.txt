@@ -1,6 +1,32 @@
-...
+API (Application Programming Interface)
 
-Common API approaches
+    A "contract between backend and frontend
+    An agreement on how different parts of an application are to interact with each other
+    JSON
+
+    Traditional web apps 
+    Each request returns a page.
+    It has to request the page from a database every time you leave and come back to it
+
+    SPA (single page application)
+    Only the 1st request returns a page
+    Most subsequent requests return some data to render or update the page
+    APIs allow SPAs
+
+    API terminology
+    APIs are not always web-based, but most of the time when talking about APIs people mean web_based APIs
+    Web APIs are not always REST or RESTful APIs, but most of the time when talking about APIs 
+    people mean web-based RESTful APIs
+    APIs are not SDKs(software developer kits); SKDs are more complete and may contain multiple APIs
+    APIs are webservices but not all webservices are APIs
+
+    API Basic Premise
+    Expose the interface through an HTTP-based web server   
+    APIs define a set of endpoints
+    Clients call these endpoints HTTP requests
+    The endpoints answer with an HTTP response (often JSON)
+
+    Common API approaches
 
     REST (Represenrational State Transfer): 
     Asking for a resource
