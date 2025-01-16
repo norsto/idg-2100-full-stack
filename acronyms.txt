@@ -1,0 +1,13 @@
+JS      JavaScript
+API     Application Programming interfaces
+I/O     Input/Output 
+REST    Represenrational State Transfer
+SOAP    Simple Object Access Protocol
+CLI     Command Line Interface
+EMS     Engine Management System
+POSIX   (The) Portable Operating Interface 
+fs      file system
+CJS     commonJs
+HTTP    HyperText Transfer Protocol
+HTTPS   HyperText Transfer Protocol Secure
+MB

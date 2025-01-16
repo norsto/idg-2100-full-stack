@@ -22,7 +22,7 @@ async function fetchCountries() {
 
         startNewRound();
     } catch(err) {
-        //Displays this error message if the network is down or the API is unreachable
+    //Displays this error message if the network is down or the API is unreachable
         message.innerHTML = "It didn't work " + err;
     }
 }*/
@@ -55,18 +55,62 @@ function startNewRound() {
     //selects the random country
     const countryName = randomCountry.name.common;
     //retrieves the country name and capital. 
-    const capital = randomCountry.capital ? randomCountry.capital[0] : null;
+    const correctCapital = randomCountry.capital ? randomCountry.capital[0] : null;
     //If a capital is not found, null is used.
 
-    window.currentCapital = capital;
-    //capital is stored here for later comparison
+    if (!correctCapital) {
+        return startNewRound
+        //skips countries without capitals and starts a new round
+    }
+
+    window.currentCapital = correctCapital;
+    //correct capital is stored here for later comparison
 
     document.querySelector("#countryName").textContent = `What is the capital of ${countryName}?`;
     //Country name is dynamically displayed on the page where the element id is countryName
-    document.querySelector("#capitalGuess").value = "";
-    //clears the input field so the user can type their next guess
     document.querySelector("#feedback").textContent = "";
     //clears the feedback message to prepare for the next round of the game
+
+    const options = new Set();
+    //generate incorrect options
+    while(options.size < 4) {
+    //while adding 4 options--
+        const randomOption = getRandomCountry().capital?.[0];
+        //--select random capitals optios from the getRandomCountry function
+        if(randomOption /*&& randomOption*/ !== correctCapital) {
+        //if the options is not the correct capital, add it as an option
+            options.add(randomOption);
+        }
+    }
+
+    options.add(correctCapital);
+    //add the correct option/capital
+
+    const shuffledOptions = Array.from(options).sort(() => Math.random() - 0.5);
+    //Shuffles the options so the same button isn't always the correct option
+
+    //document.querySelector("#capitalOptions label").textContent = `${window.}`;
+    const optionsContainer = document.querySelector("#capitalOptions");
+    optionsContainer.innerHTML = "";
+    //clears previous options
+
+    shuffledOptions.forEach(option => {
+        const input = document.createElement("input");
+        input.type = "button";
+        input.name = "capital";
+        input.value = option;
+        input.classList.add("option");
+
+        const label = document.createElement("label");
+        label.appendChild(input);
+        //label.appendChild(document.createTextNode(` ${option}`));
+
+        optionsContainer.appendChild(label);
+
+    });
+
+    input.forEach(input => (input.checked = false));
+    //clears the previous selections
 }
 
 function getRandomCountry() {
@@ -76,25 +120,25 @@ function getRandomCountry() {
 }
 
 function checkGuess() {
-//is called when the user clicks the submit button
-    const userGuess = document.querySelector("#capitalGuess").value.trim().toLowerCase();
-    //retrieves the user's guess from the input field and trims any whitespace and converts it to lowercase for case-insensitive comparison
-    const correctCapital = window.currentCapital.toLowerCase();
-    //compares the user's guess with the correct capital, also converted to lowercase
-
+    const selectedOption = document.querySelector("input[name='capital']:checked");
     const feedback = document.querySelector("#feedback");
-    //selects the element with the id feedback and turns it into a cons for later use
     const displayScore = document.querySelector("#score");
-    //selects the element with id score and turns it into a cons for later use
+
+    if(!selectedOption) {
+    //if an option is not selected--
+        feedback.textContent = "Please select an option";
+        //--the user will be asked to select one
+        return;
+    }
+
+    const userGuess = selectedOption.value;
+    const correctCapital = window.currentCapital;
 
     if(userGuess === correctCapital) {
-    //if the userGuess is strictly the same as the capital saved in the correctCapital variable--
         feedback.textContent = "Correct! Yay!";
-        //--it will dispay the message in the html element saved in feedback, and display the message--
         score++;
-        //--and add a point to the score
     } else {
-    //if the answer isn't correct, the message below will display, and no points will be added to the score
+        //if the answer isn't correct, the message below will display, and no points will be added to the score
         feedback.textContent = `Incorrect, it is ${window.currentCapital}.`;
         //displays the correct capital name that is saved in the currentCapital variable
     }
@@ -106,8 +150,14 @@ function checkGuess() {
     //starts a new round after 2 seconds
 }
 
+/*
 document.querySelector("#submit").addEventListener("click", checkGuess);
-//submits the user's guess when they click on the submit button
+//submits the user's guess when they click on the submit button*/
+
+document.querySelector("#submit").addEventListener("click", (e) => {
+    e.preventDefault();
+    checkGuess();
+});
 
 window.onload = fetchCountries("https://restcountries.com/v3.1/all");
 //runs the fetchCountries function when the page loads
