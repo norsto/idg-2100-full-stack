@@ -13,5 +13,7 @@ fsp     file system promises
 CJS     commonJs
 HTTP    HyperText Transfer Protocol
 HTTPS   HyperText Transfer Protocol Secure
-MB      MegaByte
+MB      Mega Byte
+NPM     Node Package Manager
+SoC     Separation of Concerns
 JSON    JavaScript Object Notation
