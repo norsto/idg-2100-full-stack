@@ -3,10 +3,11 @@ Check if "tmp.txt", "Downloads", ".bash_profile" exist in your home folder
 https://aliaksem.folk.ntnu.no/IDG2100/test.files.zip 
     sort files based on whether it is text of JSON*/
 
+/* Own attempt
 const fs = require('fs');
 const path = require('path');
 
-/*
+
 const directoryPath = './' 
 
 fs.readdir(directoryPath, (err, files) => {
