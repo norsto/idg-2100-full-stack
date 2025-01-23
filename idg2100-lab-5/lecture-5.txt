@@ -1,0 +1,64 @@
+Focus on non-relational databases
+
+Course Assesments:
+4 compulsory assignments. Approved/not approved 
+Oral presentations required for most (or all) of the assignments
+Compusory attendance to the hackathon (TBC)
+1 full stack project in groups. Graded individually based on oral presentations
+1 attempt per assignment (*If they can tell you've tried, you can ask for a second attemt)
+If approved => You can deliver the final project (exam)
+
+Learning materials
+MDN Web Docs
+W3
+DEV community
+Stack Overflow
+Can i use (browser compatibility)
+Eloquent JavaScript
+
+Course Content
+Front-endpoint 
+    Web components
+    JS framework (React)
+    Typescript?
+Back-end   
+    NodeJS 
+    Express 
+    MongoDB
+    GraphQL?
+
+Long but important video:
+https://www.youtube.com/watch?v=8sXRyHI3bLw
+
+Basic Deployment 
+    Netlify
+
+RESTful APIs (improtant)
+
+Homework:
+https://www.youtube.com/watch?v=IFOfQsi5ye0 (if this link doesn't work, just go on the lecture to find it)
+
+
+Terminology
+Separation of concerns 
+    A design principle for separating a computer program into distinct sections such that each section addresses a separate concern.
+    Concerns could be: css(visual) html(structure) js(glue, keeps everything together)
+    A concern is a set of information that affects the code of a computer program.
+    A program that embodies SoC well is called a modular program.
+    Modularity, and hence separation of concerns, is achieved by encapsulation information inside a section of code that has a well-defined interfaces
+    ChatGPT "give me some advantages of Separation of Concerns"
+
+Coupling 
+    The degree of independence between software modules; a measure of how closely connected two routines or modules are;
+    the strenght of the relationships between modules
+
+Loose/low Coupling
+    Each of its components has, or make use of, little or no knowledge of the definitions of other separate components. 
+    Subareas include the coupling of classes, interfaces, data, and services
+
+Tight/hight Coupling
+    The opposite of loose coupling
+
+Code snippets/modules should be reusable
+
+Web Components 
