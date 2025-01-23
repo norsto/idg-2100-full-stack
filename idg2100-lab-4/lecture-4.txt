@@ -1,0 +1,116 @@
+NPM(Node Package Manager) and Packages
+
+Tool to install, manage and share NodeJS packages 
+    package installation
+    package publication
+    dependency management/version control
+    script automation
+https://www.npmjs.com (?)
+
+package.json
+configuration file used in Node.jr projects to define ...
+
+overview
+    name - package name
+    versiondescription - package version
+    keywords
+    author - who authored the package
+    main - main entry point
+    scripts - custom commands
+    dependencies
+
+Dependencies 
+    exact version: "express": "4.17.1"
+    caret: "express": "^4.17.1"
+    tilde: "express": "~4.17.1"
+        only the right-most number can change (only patches)
+    less than, or greater than or equal: "express": ">=4.17.1"
+    range: "express": "4.0.0 - 4.17.1"
+    "express": "latest"
+
+npm commands
+    npm install/uninstall
+    npm install<package-name>@<version>
+    npm init 
+    npm run <scriptName>
+    npm start/stop
+    npm publish
+    npm login
+
+npm install
+    packages are installed in the "node_modules" subdirectories
+    npm install -g (?)
+
+can make the json file manually in vsc or in the terminal(npm init)
+
+Tasks: 
+
+    Publish package:
+    npm login
+    npm publish
+
+    install the package in a new project 
+    create an HTTP server that shows a page with a random cat image
+
+ExpressJS
+A popular unopinionated web framework, written in JS and hosted within the Node.js runtime environment
+
+[main] routing:
+deciding how ...
+
+template engine support:
+facilitating the use of templating
+
+serving static files
+
+basic srt-up 
+    import express from "express"
+    ...
+    ...
+
+Routing:
+A request come in, with its associated method, path,query, and headers
+The request is passed to handlers in a cascading fashion
+Only the ha...
+
+main consepts:
+    Application
+    router
+    request 
+    response
+
+ExpressJS App 
+    app.locals
+    app.get()/app.set()
+    app.listen()
+    app.all()/get()/post()/put()/delete()
+    app.use() 
+    app.render()
+
+ExpressJS Request  
+    req.params
+        console.dir(req.params.name)
+        /users/:id/records/:recordid
+        /users/idg2100/records/UGPOI
+        req.params("",)
+    req.body
+something about security for the website, disabling something, might have something to do with req.body 
+    req.
+    req.cookies
+    req.accepts(types)
+
+ExpressJS Response
+    res.locals
+    res.status()
+        sends the HTTP status for the response
+    res.cookie()
+    res.json()
+        sends a JSON response
+    res.send()
+    res.write()
+    res.sendFile()
+        transfers the file at the given path
+    res.render()
+
+Useful:
+    expressjs.com
