@@ -17,3 +17,4 @@ MB      Mega Byte
 NPM     Node Package Manager
 SoC     Separation of Concerns
 JSON    JavaScript Object Notation
+rss     resident set size
