@@ -1,47 +1,6 @@
-/* Basic server
-You need to look at this later
- */
+/* Basic server */
 
 //create a basic HTTP server
-/*
-var http = require('http');
-http.createServer(function (req, res) {
-    res.writeHead(200, {'Content-Type': 'text/plain'});
-    res.write('hello world');
-    res.end();
-}).listen(8000);
-
-const http = require("http");
-const fsp = require("fs/promises");
-
-const servertry = http.createServer(async  (req, res) => {
-//    const server = http.
-    try {
-        if(req.method === "GET" && req.url.startsWith("(msg")){
-            const something = other;
-        } else {
-            res.statusCode = 404;
-            res.end("RESOURCE NOT FOUNT");
-        } //else if()
-    } catch (error) {
-        res.statusCode = 500;
-        console.error(error);
-        res.end("SERVER BYE");
-    }
-});
-
-module.exports = new Promise(function(resolve, reject) {
-    servertry.listen(8081);
-    servertry.on("error", e => {
-        console.error(e);
-        rejects(e);
-    });
-});
-
-function queryAUrl() {
-    
-}
-*/
 
 //only handle connections coming to the "/msg" path
 
@@ -116,7 +75,7 @@ const server = http.createServer(async (req, res)=>{
         }
     //catch if some other error occurs
     } catch (error) {
-        // if some exception happens that we coouldn't deal with
+        // if some exception happens that we couldn't deal with
         res.statusCode = 500;
         console.error(error);
         res.end("SERVER MADE BOOBOO");
