@@ -1,0 +1,134 @@
+Web Components 
+
+    A new browser feature that provides a standard component model for the web, consisting of several pieces maintained in different places
+    A suite of different technologies allowing you to create reusable custom elements...
+    APIs that allow you to create new custom, reusable, encapsulated HTML tags to use in web pages and web apps
+    Custom components and widgets build in the Web Component standard
+
+Why?
+    Efficiency: no need for JS libraries (implemented in the browser)
+        Lightweight and less CPU
+    Composability
+    Maintainability and Readability
+    Reusable
+    Extensibility
+    Framework agnostic
+
+Criticism?
+    Styling difficulty?
+    Ignored inputs
+    Backward compatibility?: no centrar directory
+
+Web components is a meta-specification made possible by four other specifications:
+    The Custom Elements specificationThe shadow DOM specification (now a part of...)
+    Shadow DOM
+    HTML Template Specification
+    ES Module Specification
+
+Custom Element Specification 
+    Used to create custom declarative elements (new HTML tags), or extended elements, that the browser comes with out-of-the-box
+    Steps:
+        (1) Create a new class extending the HTMLElement class
+        (2) Register this element with a new name and associate it with the class
+        (3) Use it 
+
+Shadow DOM 
+    Used to attach DOM subtrees to elements in a web document. These subtrees are encapsulated.
+    Why? To keep an element's features private, so it can be scripted and styled without the fear of collision with other parts of the document 
+    In other words: The shadow DOM is not part of the main document main tree
+    Steps:
+        (1) Attach a shadow DOM using the "attachShadow()" method
+    
+    Composition and Slots 
+        By default, if an element has shadow DOM, the shadow tree is rendered instead of the element's children. --
+        -- To allow children to render, you need to add placeholders for them in your shadow tree.
+
+HTML Template Specification
+    Used to declare fragments of HTML that can be cloned and inserted in the document by scripted
+    A Template is not rendered at load time =>...
+    ...
+    ...
+
+ES Module Specification
+    ES6 module imports
+    Defines the inclusion and reuse of JS documents in other JS documents
+    ES Modules enable web components to be developed in a modular way
+    Steps (3 different ways):
+        (best seen in the lecture slides)
+
+Browser support 
+    (Most browsers tbh)
+
+(look at lecture, currency converter)
+Step By Step HTML Template (a):
+    We create a <template> </> in our html file
+    We retrieve the...
+
+Step by Step HTML Template (b):
+    We create a <template></> in our JS code using ....
+
+--||-- (c)
+
+Step by Step - ES Modules (a)
+    Problem:
+    Solution:
+    JS file: We can choose what the user can use with the help of the export keyword
+    HTML file: we import the file as a ...
+
+Step by Step - ES Modules (b)
+
+Reusable Web Components
+    We want a component that is reusable and flexible
+    GOAL: (see lecture)
+
+Attributes vs Properties
+    What?
+        Handle data with Web components
+    How?
+        HTML attributes or properties 
+    Why?
+        We need to "pass" information to our component to make it more flexible
+    Note: data binding and state management ...
+
+Attributes
+    Attributes are the easiest way to pass data into a Web component (aka. custom element)
+    Same as HTML attributes. Therefore, always treated as a String
+    We read the attribute in the constructor
+    We assign the value of the attribute as a property 
+
+Tasks:
+solution (a)
+
+solution (v-5-b)
+    store the shadowRoot as a class property (don't use "shadowRoot" for naming the property)
+    Move getTemplate function inside the class...
+
+Life Cycle Callback Methods
+What?
+    Web components fire life cycle events when they reach a certain stage of execution
+    These stages reflect the overall process of creating a web component
+    You can "hook" code in the Web component when it goes through these life cycle events
+How?
+    Using the life cycle callback methods that are implemented as part of the HTMLElement
+Why?
+    To control how the componwnt behaves
+    
+...
+    connectecCallback
+        Invoked each time the custom element is appended into a document-connected element. This will happen each time the node is moved to a new document's DOM
+    disconnectedCallback
+        Invoked each time the custom element is disconnected from the ...
+    adoptedCallback
+    attributeChangedCallback
+
+static get observedAttibutes() {
+    return ["nok"];
+}
+
+solution (v-5-c):
+    attributeChangedCallback(name, oldValue, newValue) {
+        if(oldValue === newValue) return;
+        if(name !== "nok") return;
+        this._nok = newValue;
+        this.render();
+    }

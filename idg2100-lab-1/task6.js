@@ -55,7 +55,7 @@ function nativeSort(arr){
 function bubbleSortNew(arr){
     let sorted = false;
     let till = arr.length;
-    wile (!sorted){
+    while (!sorted) {
         sorted = true;
         for(let i = 0; i < till-1; i++){
             if(arr[i] > arr[1+1]){
