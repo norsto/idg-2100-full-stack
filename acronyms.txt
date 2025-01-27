@@ -13,3 +13,5 @@ HTTPS   HyperText Transfer Protocol Secure
 MB      Mega Byte
 NPM     Node Package Manager
 SoC     Separation of Concerns
+CPU     Central Processing Unit
+||      or
