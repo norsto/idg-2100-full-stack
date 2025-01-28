@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JS example random elements from list</title>
+
+    <style>
+
+        [class$="-container"] {
+            margin: 1em;
+            padding: 1em;
+        }
+        
+        [class$="-container"]:nth-child(odd) {
+            background-color: antiquewhite;
+        }
+        
+        [class$="-container"]:nth-child(even) {
+            background-color: cornsilk;
+        }
+    </style>
+</head>
+<body>
+    <h1>Playing with Web components</h1>
+
+    <div class="oss-container">
+        <random-list id="os-list" list="a,b,c"></random-list> <!--add the actual bits to the a, b, c. they're separated by a comma, because it's a string-->
+    </div>
+
+    <div class="fruit-container">
+        <random-list id="fruit-list"></random-list>
+    </div>
+
+    <div class="default-container">
+        <random-list id="default-list"></random-list>
+    </div>
+
+    <div>
+        <h2>This container has a list of all the elements extracted from the random lists</h2>
+        <ul id="list__random-history"></ul>
+    </div>
+
+    <!-- Notice both imported as modules -->
+    <script type="module" src="./RandomListComponent.js"></script>
+    <script type="module" defer>        
+        const os = ["mac", "ios", "android", "windows"];
+        const fruits = ["apple", "banana", "strawberry", "pear"];
+
+        // console.log("example retrieving dom using getElemebtById for oss-container", document.getElementById("os-list"));
+
+        // (1) Do something with os-list, fruit-list and default-list to make sure they all receive the required lists
+        // Your code here...
+        
+                
+        // end (1)
+    </script>
+    <!-- Notice: not imported as a module -->
+    <script>
+        // (2) listen to custom events sent by RandomList component. Everytinme an element is randomly pulled from the list
+        //   make sure you add it in the "list__random-history" list container.
+        // your code goes here...
+        
+        
+        //end (2)
+    </script>
+</body>
+</html>
