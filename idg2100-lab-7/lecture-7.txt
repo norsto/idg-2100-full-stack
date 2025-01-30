@@ -1,0 +1,18 @@
+Web Components (reusable web components - state and props)
+    HTML attributes aren't always a good solution to pass data to a web components 
+        The value might be too long
+        The value is a complex data type (JSON-style data structure, array, object, etc.)
+        There might be a value you don't want to show in the HTML code (data is too sensitive)
+
+    HTML properties might be better for passing complex data types
+        Remember: DOM elements are also exposed in JS as objects
+        How can we use properties?
+            Using getters and setters in the component class
+        Pros 
+            Can work with complex data types including objects and arrays 
+            Can be used to hide code from HTML
+        Cons 
+            Complexity
+            Configuration relies on JS (can't be used as an out of the box HTML element)
+
+Continue work on last week's student activity
