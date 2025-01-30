@@ -20,3 +20,4 @@ CPU     Central Processing Unit
 ||      or
 JSON    JavaScript Object Notation
 DOM     Document Object Model
+rss     resident set size
