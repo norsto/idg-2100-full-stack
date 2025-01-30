@@ -25,6 +25,7 @@
     <h1>Playing with Web components</h1>
 
     <div class="oss-container">
+        <!--random-list is a JS object-->
         <random-list id="os-list"></random-list>
     </div>
 
@@ -42,7 +43,7 @@
     </div>
 
     <!-- Notice both imported as modules -->
-    <script type="module" src="./RandomListComponent.js"></script>
+    <script type="module" src="./RandomListComponentOg.js"></script>
     <script type="module" defer>        
         const os = ["mac", "ios", "android", "windows"];
         const fruits = ["apple", "banana", "strawberry", "pear"];
@@ -51,8 +52,9 @@
 
         // (1) Do something with os-list, fruit-list and default-list to make sure they all receive the required lists
         // Your code here...
-        
-                
+        document.getElementById("os-list").setList(os);
+
+        document.getElementById("fruit-list").setStaticList(fruits);
         // end (1)
     </script>
     <!-- Notice: not imported as a module -->
