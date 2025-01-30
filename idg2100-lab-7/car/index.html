@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+<script src="car.js"></script>
+<script>
+    const blueCar = new Car("blue", 4);
+    const redCar = new Car("red", 5);
+    blueCar.accelerate(5);
+    blueCar.brake();
+    redCar.changeColour("pink");
+    let whatIsMyColour = redCar.toString();
+    console.log();
+
+    const pickUp = new PickUpCar("orange", 6);
+</script>
+    
+</body>
+</html>

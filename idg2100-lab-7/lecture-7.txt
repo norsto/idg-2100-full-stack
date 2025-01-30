@@ -16,3 +16,29 @@ Web Components (reusable web components - state and props)
             Configuration relies on JS (can't be used as an out of the box HTML element)
 
 Continue work on last week's student activity
+The whole thing is under rv5(?)(after student activity)
+
+DOM Events 
+    Something which happens or takes place in the browser
+    The Event Interface represents any event which takes place in the DOM
+        User-Generated
+            Mouse 
+            keyboard 
+            etc 
+
+    Events are propagated through the DOM (bubble phase)
+        Capture: 
+            first an event flows down the DOM tree
+        Target:
+            The events hits the target
+        Bubble:
+            The event finally bubbles back up
+        
+        elem.addEventListener(event, function, useCapture)
+
+Reusable Web Components - Events
+    We can use custom events to send data from the Web component to its parent 
+
+    obj.addEventListener(...); 
+
+this is the element w/o the shadow (?)
