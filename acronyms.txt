@@ -19,3 +19,4 @@ SoC     Separation of Concerns
 CPU     Central Processing Unit
 ||      or
 JSON    JavaScript Object Notation
+DOM     Document Object Model
