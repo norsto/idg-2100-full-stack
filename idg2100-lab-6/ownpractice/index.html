@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="TodoItem.js" defer></script>
+    <script src="ExpandableList.js" defer></script>
+    <title>Document</title>
+</head>
+<body>
+    <h3>Other</h3>
+    <todo-item checked="" name="checked">
+        Todo 1
+        <span slot="description">Small text</span>
+    </todo-item>
+    <todo-item>Todo 2</todo-item>
+    <todo-item>Todo 3</todo-item>
+
+    <ul is="expandable-list" data-expanded>
+        <li>First</li>
+        <li>Second</li>
+        <ul is="expandable-list" data-expanded>
+            <li>First</li>
+            <li>Second</li>
+        </ul>
+    </ul>
+</body>
+</html>

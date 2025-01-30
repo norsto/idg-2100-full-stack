@@ -29,7 +29,9 @@ export default class RandomList extends HTMLElement {
     }
 
     attributeChangedCallback(name, oldValue, newValue) {
+        // If the old value is the exact same as the new value, return
         if(oldValue === newValue) return;
+        // If 
         if(name !== "nok") return;
         this._nok = newValue;
         this.render();
