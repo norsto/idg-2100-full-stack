@@ -19,5 +19,5 @@ SoC     Separation of Concerns
 CPU     Central Processing Unit
 ||      or
 JSON    JavaScript Object Notation
-JSON    JavaScript Object Notation
+DOM     Document Object Model
 rss     resident set size
