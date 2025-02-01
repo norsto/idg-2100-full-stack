@@ -21,3 +21,4 @@ CPU     Central Processing Unit
 JSON    JavaScript Object Notation
 DOM     Document Object Model
 rss     resident set size
+UI      User Interface
