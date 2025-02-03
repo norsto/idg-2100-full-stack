@@ -24,8 +24,7 @@ export default class RandomList extends HTMLElement {
         // Clones the template into the Shadow DOM so it appears inside the custom element
         shadowRoot.appendChild(templateContent.cloneNode(true));
     }
-//
-/*
+
     // You can create a new array and use the same methods to get it to work, aka the script is made with reusable code
     // Setter method for a property called list
     // A setter (set) alows updating a property when assigning a new value
@@ -39,7 +38,6 @@ export default class RandomList extends HTMLElement {
         this.listB = [];
     }
     // This method doesn't change the UI however    
-    */
 
     // This method is called automatically when the element is added to the DOM
     connectedCallback() {
