@@ -8,6 +8,7 @@ for (x of fruits) {
 }
 
 const fruits2 = ['Apple', 'Banana', 'Orange'];
+// Where/which index in the array each item has
 for (x in fruits2) {
     // The putput will be the index of every item in the array
     console.log(x);
