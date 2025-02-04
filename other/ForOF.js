@@ -6,3 +6,10 @@ for (x of fruits) {
     // The output will be every item in the array in order
     console.log(x);
 }
+
+const fruits2 = ['Apple', 'Banana', 'Orange'];
+// Where/which index in the array each item has
+for (x in fruits2) {
+    // The putput will be the index of every item in the array
+    console.log(x);
+}
