@@ -22,3 +22,4 @@ JSON    JavaScript Object Notation
 DOM     Document Object Model
 rss     resident set size
 wc      Web Component
+UI      User Interface

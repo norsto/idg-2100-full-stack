@@ -24,14 +24,20 @@ export default class RandomList extends HTMLElement {
         // Clones the template into the Shadow DOM so it appears inside the custom element
         shadowRoot.appendChild(templateContent.cloneNode(true));
     }
-//
-/*
-    set list(list) {
-        this.staticList = [...myList];
-        this.listA = [...myList];
+
+    // You can create a new array and use the same methods to get it to work, aka the script is made with reusable code
+    // Setter method for a property called list
+    // A setter (set) alows updating a property when assigning a new value
+    set list(newList) {
+        // Takes the newList parameter and stores it in staticList (original copy)
+        this.staticList = [...newList];
+        // Copies newList into listA, meaning listA always starts with this data
+        // Reset listA
+        this.listA = [...newList];
+        // Clear listB to remove precious pulled elements
         this.listB = [];
-        const list = newList
-    } */
+    }
+    // This method doesn't change the UI however    
 
     // This method is called automatically when the element is added to the DOM
     connectedCallback() {
@@ -89,52 +95,81 @@ export default class RandomList extends HTMLElement {
         // Finds resetButton
         let resetButton = shadowRoot.getElementById("resetButton");
 
-        // When pullButton is clicked, it calls the _pullElement() method
+        // When pullButton is clicked, ... 
         pullButton.addEventListener("click", (e) => {
             //Task: Use this if you wish to debug
             //Task: console.log('listend to click event');
             //Task: console.log(e);
+            //... it calls the _pullElement() method
             this._pullElement();
         });
 
+        // When the resetButton is clicked, ...
         resetButton.addEventListener("click", (e) => {
             //Task: Use this if you wish to debug
             //Task: console.log('listend to reset click event');
             //Task: console.log(e);
+            //... it calls the _resetList() method
             this._resetList();
         });
-
     }
 
     _pullElement() {
+        // Creates a constant variable called randomElem that calls on the _pullRandomElementFromList function/method... 
+        // ... which returns a random item from listA
+        // this refers to RandomList
         const randomElem = this._pullRandomElementFromList();
+        // If listA is empty, it exits/returns early...
         if (!randomElem)
             return;
+        // ... otherwise it adds the element to the pulled list via the _addElementToPulledList() function/method
         this._addElementToPulledList(randomElem);
     }
 
+    // Returns a random item from listA
     _pullRandomElementFromList() {
+        // if listA has no elements, return null to stop execution
         if (!this.listA.length)
             return null;
+        // const randomIndex stores built in functions, so you don't have to write the whole thing over and over
+        // Math.random() generates a random decimal between 0 and 1 (e.g., 0,57)
+        // Multiplying by listA.length gives a number between 0 and listA.length -1 (e.g., 0.57 * 3 = 1.71)
+        // Math.floor() rounds it down to get a valid index (e.g., 1)
         const randomIndex = Math.floor(Math.random() * this.listA.length);
+        // splice(index, 1) removes one item at randomIndex, the method returns an array of removed items
+        // [0] extracts the first (and only) element from that array
         const randomElem = this.listA.splice(randomIndex, 1)[0];
+        // Moves the element to listB (tracks removed elements in listB)
         this.listB.push(randomElem);
+        // then the randomElem is returned to _pullElement() and it now has the randomly chosen item
         return randomElem;
     }
 
+    // Adds the element to pulledList
     _addElementToPulledList(elem) {
         let shadowRoot = this.shadowRoot;
+        // Finds the <ol id="pulledList"> inside the Shadow DOM
         const ul = shadowRoot.getElementById("pulledList");
+        // Appends the element to the end of the pulled list, and keeps previous elements intact
         ul.insertAdjacentHTML('beforeend', `<li>${elem}</li>`);
     }
 
+    // Resets the list
     _resetList() {
+        // [...] is a spread operator and it creates new array copy, ensuring listA is separate from staticList
+        // Restores listA
         this.listA = [...this.staticList];
+        // Clears pulled elements, and won't hold any previously removed items
         this.listB = [];
+        // shadowRoot holds the shadow DOM of the component (this is where the element's private HTML structure lives)
+        // AKA accesses the shadow DOM
         let shadowRoot = this.shadowRoot;
+        // Searches for the <ol id="pulledList"> inside the shadow DOM (this is where pulled elements are displayed)
         const ul = shadowRoot.getElementById("pulledList");
+        // Clears the displayed pulled list (even though listB was already emptied, this removes elements from the screen)
         ul.innerHTML = "";
     }
 }
 
+// Registers RandomList as a custom HTML element (<random-list>)
 customElements.define("random-list", RandomList);
