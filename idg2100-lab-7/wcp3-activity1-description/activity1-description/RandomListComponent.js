@@ -15,7 +15,7 @@ export default class RandomList extends HTMLElement {
         // An empty array, which can be modified later
         this.listB = [];
 
-        // Assumes there's a method that rtrieves an HTML template for the component
+        // Assumes there's a method that retrieves an HTML template for the component
         let templateContent = this._getTemplateContent();
         //Task: No need to store variable shadowRoot, it is already part of the HTMLElement spec now.
         // Creates an open Shadow DOM, meaning external scripts can access it

@@ -1,0 +1,45 @@
+Web Components Part 5 
+
+Hackatron
+
+Web Components -> APIs 
+Reusable Web Components -> REACT
+Reusable Erb components with properties 
+
+Student Activity
+Web components game:
+    Component 1: <countdown-timer>
+    Component 2: <game-with-player>
+    Component 3: <results-players>
+
+C1:
+    <countdown-timer seconds="60">
+        Seconds indicate the time the game will last
+    Functonality
+        Start countdown from "seconds" to 0
+    Controls 
+        Start, stop, reset 
+    Events 
+        startgame
+        resetgame
+        stopgame
+        finishgame
+        Payload: seconds and secondsLeft (others?)
+
+C2:
+    <game-with-player player="Player a" letter="a">
+        Player indicates name of the player
+        Letter indicates the keyboard key the player must stroke
+    Functionality
+        To count the keystrokes of the "letter<2 wile the countdown-timer is counting
+        countdown-timer is counting 
+    Controls ....
+    Events
+        The keyup event
+
+C3:
+    <result-players>
+        Decide how the results player will recieve the players and the winner
+    Functionality
+    Controls 
+    Events 
