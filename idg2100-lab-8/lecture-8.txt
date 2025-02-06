@@ -1,0 +1,20 @@
+Web Components part 4 
+
+litElement (optional, you don't have to learn it)
+    JS library
+
+Open-wc 
+
+type scripts (?)
+
+Storybook 
+    Deals with npm or the other thing v... 
+        npm run storybook 
+    Shows how a web component works 
+
+Fetching Data From a JSON File
+    
+Ways to be async
+    Async/await
+    then is a sort of async function (?), AKA promise
+    callback functions
