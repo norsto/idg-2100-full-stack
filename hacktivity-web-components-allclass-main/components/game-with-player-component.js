@@ -13,6 +13,8 @@ class GameWithPlayer extends HTMLElement {
         this.gamePlayer = this.getAttribute("player");
         // Retrieves the letter attributes from the HTML tag 
         this.gameLetter = this.getAttribute("letter");
+
+        this.playing = true;
         // Calls _getTemplateContent()
         let templateContent = this._getTemplateContent();
         // Creates a Shadow DOM, mode: open means JS outside the component can access it
@@ -24,17 +26,17 @@ class GameWithPlayer extends HTMLElement {
         const logElement = shadowRoot.querySelector("#log");
         // Binds this.getKey(logElement) to the "keyup" event, triggers when a key is pressed and released
         // This means whenever a player types, getKey(logElement) will handle it
-        document.addEventListener("keyup", this.getKey.bind(this, logElement));
+        document.addEventListener("keyup", (event) => this.getKey(logElement, event));
 
         // "startgame" signals the game to start  
         // this.checkForGame("eventname") is called immediately instead of being assigned to an event listener
-    document.addEventListener("startgame", this.checkForGame("startgame"));
-    // "resetgame" resets the game
-    document.addEventListener("resetgame", this.checkForGame("resetgame"));
-    // "stopgame" stops the game temporarily
-    document.addEventListener("stopgame", this.checkForGame("stopgame"));
-    // "finishgame" ends the game and triggers score calculations
-    document.addEventListener("finishgame", this.checkForGame("finishgame"));
+        document.addEventListener("startgame", this.checkForGame("startgame"));
+        // "resetgame" resets the game
+        document.addEventListener("resetgame", () => this.checkForGame(logElement));
+        // "stopgame" stops the game temporarily
+        document.addEventListener("stopgame", this.checkForGame("stopgame"));
+        // "finishgame" ends the game and triggers score calculations
+        document.addEventListener("finishgame", () => this._finalScoreReady());
     }
 
     // Creates and returns an HTML template that displays the players, their letter/key they're clicking and how many keystrokes they have, dynamically
@@ -55,29 +57,33 @@ class GameWithPlayer extends HTMLElement {
     // logElement is a reference to the DOM element (within the ShadowDOM) where the keystrokes will be logged (e.g., an element with id="log")
     // event is the event object that is passed when a key is pressed. It contains information about the key that was pressed (e.g., event.key)
     getKey(logElement, event) {
+        if (event && this.playing) {
         // if the key pressed (event.key) matches the player's designated gameLetter...
-        if (event.key === this.gameLetter) {
-            //... it increments the keystrokes count by 1, and keeps track of how many correct keystrokes the player has made
-            this.keystrokes++;
-            // Updates the inner text of the logElement to display the updated count of keystrokes dynamically
-            logElement.innerText = `Total keystrokes: ${this.keystrokes}`;
+            if (event.key === this.gameLetter) {
+                //... it increments the keystrokes count by 1, and keeps track of how many correct keystrokes the player has made
+                this.keystrokes++;
+                // Updates the inner text of the logElement to display the updated count of keystrokes dynamically
+                logElement.innerText = `Total keystrokes: ${this.keystrokes}`;
+            }
         }
     }
 
     // Is intended to handle different game events and perform actions based on the event type
     checkForGame(eventType) {
-        // if the event type is "startgame"...
-        if ("startgame" === eventType) {
-            //... call this.getKey()
-            // However, this is a problem because this.getKey() expects two parameters, the logElement and the event, but here it's being called without any parameters
-            return this.getKey();
-        //... else if the event type is "stopgame" or "resetgame" or "finishgame" ...
-        } else if ("stopgame" === eventType || "resetgame" === eventType || "finishgame" === eventType) {
-            //... return
-            return this.getKey().disabled;
-        } else if ("finishgame" === eventType) {
-            this.finalScoreReady();
-        }
+        if ("startgame" === eventType) return this.getKey();
+        else if (this.getKey()) return this.getKey().disabled;
+    }
+
+    //Created function to handle game reset
+    resetGame(logElement) {
+        //resetting "this.playing" to true for the game to be playable
+        this.playing = true;
+
+        //resetting keystrokes to 0
+        this.keystrokes = 0;
+
+        //Updating displayed keystroke message
+        logElement.innerText = `Total keystrokes: ${this.keystrokes}`;
     }
 
     finalScoreReady() {
@@ -85,11 +91,12 @@ class GameWithPlayer extends HTMLElement {
             detail: {
                 player: this.gamePlayer,
                 letter: this.gameLetter,
-                total: this.keystrokes
+                keystrokes: this.keystrokes
             },
             bubbles: true,
             composed: true
         }))
+        this.playing = false
     }
 
 }
