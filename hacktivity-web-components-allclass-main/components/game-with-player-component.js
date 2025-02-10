@@ -94,6 +94,93 @@ class GameWithPlayer extends HTMLElement {
 
 }
 
+customElements.define("game-with-player", GameWithPlayer);
 
+
+/*NEW!! */
+//Remember to use ES6 modules
+class GameWithPlayer extends HTMLElement {
+    keystrokes = 0;
+
+    constructor() {
+        super();
+        this.gamePlayer = this.getAttribute("player");
+        this.gameLetter = this.getAttribute("letter");
+
+        this.playing = true;
+        let templateContent = this._getTemplateContent();
+        let shadowRoot = this.attachShadow({ mode: "open" });
+        shadowRoot.appendChild(templateContent.cloneNode(true));
+
+        const logElement = shadowRoot.querySelector("#log");
+        document.addEventListener("keyup", (event) => this.getKey(logElement, event));
+
+
+        document.addEventListener("startgame", this.checkForGame("startgame"));
+
+        //Updated this to call "this.resetGame" directly for the game to be reset
+        document.addEventListener("resetgame", () => this.resetGame(logElement));
+        document.addEventListener("stopgame", this.checkForGame("stopgame"));
+
+        //Call the correct function directly to avoid redundant statements
+        document.addEventListener("finishgame", () => this._finalScoreReady());
+    }
+
+
+    _getTemplateContent() {
+        const template = document.createElement("template");
+        template.innerHTML = `
+        <div id="players">
+        <p>Player: ${this.gamePlayer}</p>
+        <p class="letter">${this.gameLetter}</p>
+        <p id="log">Total keystrokes: ${this.keystrokes}</p>
+        </div>
+        `;
+        return template.content;
+    }
+
+    getKey(logElement, event) {
+        //Making sure event is defined before using ".key", and using boolean as constraint/to stop incrementing.
+        if (event && this.playing) {
+            if (event.key === this.gameLetter) {
+                this.keystrokes++;
+                logElement.innerText = `Total keystrokes: ${this.keystrokes}`;
+            }
+        }
+
+    }
+
+
+    checkForGame(eventType) {
+        if ("startgame" === eventType) return this.getKey();
+        else if (this.getKey()) return this.getKey().disabled;
+    }
+    //Created function to handle game reset
+    resetGame(logElement) {
+        //resetting "this.playing" to true for the game to be playable
+        this.playing = true;
+
+        //resetting keystrokes to 0
+        this.keystrokes = 0;
+
+        //Updating displayed keystroke message
+        logElement.innerText = `Total keystrokes: ${this.keystrokes}`;
+    }
+
+    _finalScoreReady() {
+        this.dispatchEvent(new CustomEvent("finalscoreready", {
+            detail: {
+                player: this.gamePlayer,
+                letter: this.gameLetter,
+                //Corrected the below line from "total" to "keystrokes"
+                keystrokes: this.keystrokes
+            },
+            bubbles: true,
+            composed: true
+        }))
+        //Setting boolean to false counter stops when time is up
+        this.playing = false
+    }
+}
 
 customElements.define("game-with-player", GameWithPlayer);

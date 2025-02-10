@@ -1,4 +1,4 @@
- export default class CountdownComponent extends HTMLElement {
+export default class CountdownComponent extends HTMLElement {
 
     constructor(){
         super();
@@ -13,20 +13,17 @@
     }
 
     connectedCallback(){
-        this.startBtn.addEventListener("click",()=>{this.countDown()
-
-        });
+        this.startBtn.addEventListener("click",()=>{this.countDown()});
         this.pauseBtn.addEventListener("click",()=>{this.pauseCountdown()});
         this.resetBtn.addEventListener("click",()=>{this.resetCountdown()});
     }
 
-    countDown() {
+    countDown(){
         this.shadowRoot.querySelector('#startButton').disabled = true;
         this.countdownTimer = setInterval(()=>{
             
-            if (this.timeLeft > 0){
+            if (this.timeLeft > 0) {
                 this.timeLeft--;
-                console.log(this.timeLeft);
                 this.shadowRoot.querySelector("#timeLeft").textContent = this.timeLeft;
                 
             } else {
@@ -38,8 +35,8 @@
         }, 1000)
 
         this.fireEvents("startgame")
-    }
 
+    }
 
     pauseCountdown(){
         clearInterval(this.countdownTimer);
@@ -77,19 +74,18 @@
             //payload
         //step 2 fire event to DOM
         this.dispatchEvent(
-         new CustomEvent(eventType, {
+        new CustomEvent(eventType, {
             detail: {seconds: this.seconds,
                     secondsLeft: this.timeLeft
             },
-            bubbles: false,
+            //Set bubbles to true to it is not constrained to the shadowDOM
+            bubbles: true,
+            //Added composed for it to be accessible outside shadowDOM
+            composed: true
 
         })
     )
     }
 }
 
-//CountdownComponent.countDown();
-
 window.customElements.define("countdown-timer", CountdownComponent);
-
-console.log("Hallo")
