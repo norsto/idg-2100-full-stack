@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Placeholder hactivity</title>
+
+</head>
+<body id="body">
+  <countdown-timer id="timer" seconds="5"></countdown-timer>
+
+  <game-with-player id="playerA" player="John Doe" letter="a"></game-with-player>
+  <game-with-player id="playerB" player="Jane Doe" letter="j"></game-with-player>
+  <winner-box></winner-box>
+
+  <!-- Fill the gaps to load the components in the right order -->
+  <script type="module" src="components/coundown-component.js"></script>
+  <script type="module" src="components/game-with-player-component.js"></script>
+  <script type="module" src="components/winner-component.js"></script>
+
+  <script>
+    document.getElementById("timer").addEventListener("finishgame", (event)=>{
+      console.log("Event captured: ", event.detail);
+    });
+  </script>
+</body>
+</html>
