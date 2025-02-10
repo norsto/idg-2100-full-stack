@@ -82,10 +82,7 @@ export default class CountdownComponent extends HTMLElement {
             bubbles: true,
             //Added composed for it to be accessible outside shadowDOM
             composed: true
-
-        })
-    )
+        }))}
     }
-}
 
 window.customElements.define("countdown-timer", CountdownComponent);
