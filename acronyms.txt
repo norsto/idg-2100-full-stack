@@ -1,5 +1,5 @@
 JS      JavaScript
-API     Application Programming interfaces
+API     Application Programming Interfaces
 SPA     Single Page Application
 SKD     Software Developer Kits
 I/O     Input/Output 
@@ -21,4 +21,5 @@ CPU     Central Processing Unit
 JSON    JavaScript Object Notation
 DOM     Document Object Model
 rss     resident set size
+wc      Web Component
 UI      User Interface
