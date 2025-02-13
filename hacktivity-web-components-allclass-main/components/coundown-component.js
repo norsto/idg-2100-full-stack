@@ -112,12 +112,6 @@ export default class CountdownComponent extends HTMLElement {
 
     // Creates and dispatches a custom event to notify other parts of the application about changes in the countdown
     fireEvents(eventType) {
-        //step 1 new custom event
-            //name
-            
-
-            //payload
-        //step 2 fire event to DOM
         // Creates a new Custom event...
         this.dispatchEvent(
         //... with the name eventType
@@ -130,14 +124,15 @@ export default class CountdownComponent extends HTMLElement {
                     //... scondsLeft: the remaining time when the event is fired
                     secondsLeft: this.timeLeft
             },
-            //Set bubbles to true to it is not constrained to the shadowDOM
+            //Set bubbles to true so it is not constrained to the shadowDOM
             bubbles: true,
             //Added composed for it to be accessible outside shadowDOM
             composed: true
-        }))}
+        })
+        )}
     }
 
 // Registers the CountdownComponent as a custom HTML element named <countdown-timer>
 // customElements.define is a built-in browser AOI that allows you to create custom HTML elements
 window.customElements.define("countdown-timer", CountdownComponent);
-// This creates an instance of CountdownComponent which runs its constructor and starts managing its own Shadow DOMik
+// This creates an instance of CountdownComponent which runs its constructor and starts managing its own Shadow DOM

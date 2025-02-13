@@ -61,7 +61,7 @@ class Winner extends HTMLElement{
         shadowRoot.append(templateContent.cloneNode(true));
     }
 
-    // Anything outside the constructor is a method of te class and can be called anywhere within the class
+    // Anything outside the constructor is a method of the class and can be called anywhere within the class
 
     // Loops through this.alldata to find the player with the highest keystrokes
     _findWinner() {
