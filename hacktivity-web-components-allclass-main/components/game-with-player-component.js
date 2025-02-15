@@ -1,5 +1,5 @@
 //Remember to use ES6 modules
-
+/*
 // Creates a new class called GameWithPlayer that extends HTMLElement, alloeing it to behave like a standard HTML element, but with custom behavior
 class GameWithPlayer extends HTMLElement {
     // Initializes a counter totrack the number of keystrokes a player makes
@@ -102,7 +102,7 @@ class GameWithPlayer extends HTMLElement {
 }
 
 customElements.define("game-with-player", GameWithPlayer);
-
+*/
 
 /*NEW!! */
 //Remember to use ES6 modules
