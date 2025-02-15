@@ -1,4 +1,4 @@
-// Declares a class called CountdownComponent that extends HTMLElement ¨
+// Declares a class called CountdownComponent that extends HTMLElement 
 // The export default means this class can be imported into other JS files
 export default class CountdownComponent extends HTMLElement {
 

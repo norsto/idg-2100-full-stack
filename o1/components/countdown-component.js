@@ -15,7 +15,113 @@ race-start: Emitted when the countdown reaches 0, signaling that the race can be
 race-reset: Emitted when the countdown is reset, instructing all horses to return to the start line and wait for the next race.
 */
 
+class CountdownTimer extends HTMLElement {
+    constructor() {
+        super();
 
+        this.attachShadow({mode: "open"});
+
+        const countdownTag = document.querySelector("#countdownTimer");
+        this.timeLeft = countdownTag.getAttribute("seconds");
+
+        this.countdownStart = false;
+
+        this.shadowRoot.innerHTML = this.getTemplateButtons();
+        this.shadowRoot.append(this._countdownTemplate());
+        
+        this.startButton = this.shadowRoot.querySelector("#startButton");
+        this.resetButton = this.shadowRoot.querySelector("#resetButton");
+
+        this.countdownDisplay = this.shadowRoot.querySelector("#countdown");
+
+        this.countdownDisplay.style.opacity = 0;
+        
+        this.startButton.addEventListener("click", () => {
+            if(!this.countdownStart) {
+                this.countdownDisplay.style.opacity = 1;
+                this.countDown();
+                this.countdownStart = true; 
+            }
+        });
+
+        this.resetButton.addEventListener("click", () =>{
+            if(this.timeLeft == 0) {
+                this.timeLeft = 5;
+                this.countdownStart = false;
+                this.countdownDisplay.innerHTML= this.timeLeft;
+                this.countdownDisplay.style.opacity = 0;
+
+                this.fireEvent("race-reset");
+            }
+        });
+    }
+
+    getTemplateButtons() {
+        return `
+        <style>
+            button {
+                color: whitesmoke;
+                background-color: black;
+                border-radius: 5px;
+                border: none;
+                padding: 10px;
+                margin-left: 5px;
+                margin-right: 5px;
+            }
+        </style>
+        <div>
+            <button id="startButton">start</button>
+            <button id="resetButton">reset</button> 
+        </div>`;
+    }
+
+    _countdownTemplate() {
+        const template = document.createElement("template");
+        
+        template.innerHTML = `
+        <style>
+            #countdown {
+                text-align: center;
+                font-size: 28px;
+            }
+        </style>
+        <div>
+            <h2 id="countdown">${this.timeLeft}</h2>
+        </div>`;
+
+        return template.content;
+    }
+
+    countDown() {   
+        const countdownTag = document.querySelector("#countdownTimer"); 
+        this.timer = setInterval(() => {
+            if (this.timeLeft > 1) {
+                this.timeLeft--;
+                this.shadowRoot.querySelector("#countdown").textContent = this.timeLeft;
+                countdownTag.setAttribute("seconds", this.timeLeft);
+            } else {
+                this.timeLeft--;
+                clearInterval(this.timer);
+                this.shadowRoot.querySelector("#countdown").textContent = "Go!";
+                this.fireEvent("race-start");
+                countdownTag.setAttribute("seconds", 0);
+            }
+        }, 1000);
+    }
+
+    fireEvent(eventName){
+        this.dispatchEvent(
+            new CustomEvent(eventName, {
+                bubbles: true,
+                composed: true
+            })
+        );
+    }
+}
+
+customElements.define("countdown-timer", CountdownTimer);
+
+/*
 class CountdownTimer extends HTMLElement {
 
     constructor() {
@@ -100,8 +206,8 @@ class CountdownTimer extends HTMLElement {
 }
 
 customElements.define("countdown-timer", CountdownTimer);
-
-
+*/
+/*
 class CountdownTimerNope extends HTMLElement {
     
     constructor() {
@@ -174,11 +280,12 @@ class CountdownTimerNope extends HTMLElement {
         </div>`
     }
 }
-
+*/
+/*
 customElements.define("countdown-timer-nope", CountdownTimerNope);
+*/
 
-
-/**/
+/*
 class CountdownTimer1 extends HTMLElement {
 
     constructor() {
@@ -258,9 +365,8 @@ class CountdownTimer1 extends HTMLElement {
         return template.content;
     }
 }
-
 customElements.define("countdown-timer-old", CountdownTimer1);
-
+*/
 
 
 // Declares a class called CountdownComponent that extends HTMLElement ¨

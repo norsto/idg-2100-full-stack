@@ -19,6 +19,13 @@ class RaceTrack extends HTMLElement {
 
         this.shadowRoot.innerHTML = this.racetrackTemplate();
         
+        document.addEventListener("race-finished", (event) => {
+            this.shadowRoot.querySelector("#displayWinner").innerHTML = this.winnerText(event.detail.winner, event.detail.key);
+        });
+        
+        document.addEventListener("race-reset", () => {
+            this.shadowRoot.querySelector("#displayWinner").innerHTML = "";
+        })
     }
 
     racetrackTemplate() {
@@ -30,19 +37,27 @@ class RaceTrack extends HTMLElement {
             width: 60vw;
             min-width: 300px;
             max-width: 1000px;
-            height: 150px;
+            height: 180px;
             padding: 0 20px;
+            border-radius: 20px;
+        }
+
+        #displayWinner {
+            text-align: center;
+            font-weight: bold;
+            height: 20px;
         }
         </style>
 
+        <p id="displayWinner"></p>
         <div class="raceTrack">
             <slot></slot>
         </div>       
         `;
     }
 
-    addEventListener() {
-
+    winnerText(winner, key) {
+        return `The winner is ${winner}, with the key ${key}`
     }
 }
 

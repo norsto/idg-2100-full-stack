@@ -17,194 +17,7 @@ The assigned key, so players know which key to press to move their horse.
 Make sure the horse display is visually appealing and well-designed. Also, notice the horse must somehow be able to inform other components that it has moved and its exact position every time it does it (the <race-track> component will need this information to handle the game logic).
 */
 
-/*
-class RaceHorse extends HTMLElement {
-    constructor() {
-        super();
-        this.horseName = this.getAttribute("name");
-        this.horseKey = this.getAttribute("key");
-        
-        this.attachShadow({mode: "open"});
-
-        this.shadowRoot.innerHTML = this.horseTemplate();
-
-        this.position = { x: 0 };
-
-//        this.horseData = [["horsy", "hamanda", "roach"], ["a", "g", "l"]];
-        this.horseElement = this.shadowRoot.querySelector(".raceHorse");
-    }
-
-    connectedCallback() {
-        document.addEventListener("keyup", this.handleKeyDown.bind(this));
-        const index = Array.from(document.querySelectorAll("race-horse")).indexOf(this);
-                
-        this.horseElement.style.top = `${index * 50}px`; // Adjust spacing as needed
-        this.horseElement.style.left = `0px`; // Start at the left edge
-    }
-
-    disconnectedCallback() {
-        document.removeEventListener("keyup", this.handleKeyDown.bind(this));
-    }
-
-    handleKeyDown(event) {
-        const keyBindings = {"a": 0, "g": 1, "l": 2};
-
-        const index = Array.from(document.querySelectorAll("race-horse")).indexOf(this);
-
-        if (Object.keys(keyBindings).includes(event.key) && keyBindings[event.key] === index) {
-            this.position.x += 10;
-            this.updateHorsePosition();
-        }
-    }
-
-    updateHorsePosition() {
-        this.horseElement.style.left = `${this.position.x}px`;
-    }
-
-    horseTemplate() {
-        return `
-        <style>
-            .raceHorse {
-                position: absolute;
-                width: 20px;
-                height: 20px;
-                font-size: 20px;
-                margin-bottom: 20px;
-                transform: scaleX(-1);
-            }
-        </style>
-
-        <p class="raceHorse">🏇</p>
-        `;
-    }
-}
-
-customElements.define("race-horse", RaceHorse);
-*/
-
-/*
-
-let horseCounter = 0;
-
-class RaceHorse extends HTMLElement {
-    
-    constructor() {
-        super();
-        this.attachShadow({ mode: "open" });
-        let horseData = [["horsy", "hamanda", "roach"], ["a", "g", "l"]];
-
-        let horseName = horseData[0][horseCounter];
-        let horseKey = horseData[1][horseCounter];
-
-        this.shadowRoot.innerHTML = this.horseTemplate(horseName, horseKey);
-
-        this.horseElement = this.shadowRoot.querySelector(".raceHorse");
-
-
-        this.horseElement.dataset.key = horseKey;
-
-        horseCounter++; 
-
-
-        if (!RaceHorse.listenerAdded) {
-            document.addEventListener("keyup", RaceHorse.handleKeyPress);
-            RaceHorse.listenerAdded = true;
-        }
-    }
-
-    static handleKeyPress(event) {
-        document.querySelectorAll("race-horse").forEach(horse => {
-            let horseElem = horse.shadowRoot.querySelector(".raceHorse");
-
-            if (event.key.toLowerCase() === horseElem.dataset.key) {
-                let currentLeft = parseInt(getComputedStyle(horseElem).left || 0);
-                horseElem.style.left = `${currentLeft + 10}px`;
-            }
-        });
-    }
-
-    horseTemplate(name, key) {
-        return `
-        <style>
-            .raceHorse {
-                position: relative;
-                left: 0;
-                width: 30px;
-                height: 30px;
-                font-size: 30px;
-                transform: scaleX(-1);
-                transition: left 0.1s ease-out;
-            }
-        </style>
-
-        <p class="raceHorse" name="${name}" key="${key}">🏇</p>
-        `;
-    }
-}
-
-customElements.define("race-horse", RaceHorse);
-
-*/
-
-/*
-class RaceHorse extends HTMLElement {
-    static horseCounter = 0; 
-    static horseData = [["horsey", "hamanda", "roach"], ["a", "g", "l"]]; 
-    static listenerAdded = false;
-
-    constructor() {
-        super();
-        this.attachShadow({ mode: "open" });
-
-        let horseName = RaceHorse.horseData[0][RaceHorse.horseCounter];
-        let horseKey = RaceHorse.horseData[1][RaceHorse.horseCounter];
-
-        this.shadowRoot.innerHTML = this.horseTemplate(horseName, horseKey);
-
-        this.horseElement = this.shadowRoot.querySelector(".raceHorse");
-        this.horseElement.dataset.key = horseKey;
-
-        RaceHorse.horseCounter++; 
-
-        if (!RaceHorse.listenerAdded) {
-            document.addEventListener("keyup", RaceHorse.handleKeyPress);
-            RaceHorse.listenerAdded = true;
-        }
-    }
-
-    static handleKeyPress(event) {
-        document.querySelectorAll("race-horse").forEach(horse => {
-            let horseElem = horse.shadowRoot.querySelector(".raceHorse");
-
-            if (event.key.toLowerCase() === horseElem.dataset.key) {
-                let currentLeft = parseInt(getComputedStyle(horseElem).left || 0);
-                horseElem.style.left = `${currentLeft + 10}px`;
-            }
-        });
-    }
-
-    horseTemplate(name, key) {
-        return `
-        <style>
-            .raceHorse {
-                position: relative;
-                left: 0;
-                width: 30px;
-                height: 30px;
-                font-size: 30px;
-                transform: scaleX(-1);
-                transition: left 0.1s ease-out;
-            }
-        </style>
-
-        <p class="raceHorse" data-name="${name}" data-key="${key}">🏇</p>
-        `;
-    }
-}
-
-customElements.define("race-horse", RaceHorse);
-*/
-
+/* old
 class RaceHorse extends HTMLElement {
     static horseCounter = 0; 
     static horseData = [["horsy", "hamanda", "roach"], ["a", "g", "l"]]; 
@@ -238,7 +51,7 @@ class RaceHorse extends HTMLElement {
         });
     }
 
-    connectedCallback(){
+    connectedCallback() {
         //Did interval already start?
         if (!RaceHorse.startInterval){
             RaceHorse.startInterval = true;
@@ -254,9 +67,121 @@ class RaceHorse extends HTMLElement {
                     }
                 }
             }, 500);
-        }else{
+        } else {
             return;
         }
+    }
+
+    horseTemplate(name, key) {
+        return `
+        <style>
+            .raceHorse {
+                position: relative;
+                left: 0;
+                width: 30px;
+                height: 30px;
+                font-size: 30px;
+                transform: scaleX(-1);
+                transition: left 0.1s ease-out;
+            }
+        </style>
+
+        <p class="raceHorse" data-name="${name}" data-key="${key}">🏇</p>
+        `;
+    }
+}
+
+customElements.define("race-horse", RaceHorse);
+*/
+
+class RaceHorse extends HTMLElement {
+    static horseCounter = 0; 
+    static horseData = [["horsy", "hamanda", "roach"], ["a", "g", "l", "c", "n"]]; 
+    static listenerReadySetGo = false;
+    static listenerHorseStartRunning = false;
+//  static startInterval = false;
+
+    constructor() {
+        super();
+        this.attachShadow({ mode: "open" });
+
+        let horseName = RaceHorse.horseData[0][RaceHorse.horseCounter];
+        let horseKey = RaceHorse.horseData[1][RaceHorse.horseCounter];
+
+        this.shadowRoot.innerHTML = this.horseTemplate(horseName, horseKey);
+
+        this.horseElement = this.shadowRoot.querySelector(".raceHorse");
+        this.horseElement.dataset.key = horseKey;
+
+        RaceHorse.horseCounter++; 
+    }
+
+    static handleKeyPress(event) {
+        document.querySelectorAll("race-horse").forEach(horse => {
+            let horseEmoji = horse.shadowRoot.querySelector(".raceHorse");
+
+            if (event.key.toLowerCase() === horseEmoji.dataset.key) {
+                let currentLeft = parseInt(horseEmoji.style.left || 0);
+                
+                if (currentLeft < 100){
+                    horseEmoji.style.left = `${currentLeft + 5}%`;
+                };
+
+                if (currentLeft >= 100) {
+                    document.removeEventListener("keyup", RaceHorse.handleKeyPress);
+
+                    horse.fireEvent("race-finished");
+                };
+
+                document.addEventListener("race-reset", () => {
+                    document.removeEventListener("keyup", RaceHorse.handleKeyPress);
+                    RaceHorse.listenerReadySetGo = false;
+                    RaceHorse.listenerHorseStartRunning = false;
+                    horse.resetEventListeners();
+                    horseEmoji.style.left = `${0}%`;
+                })
+            }
+        });
+    }
+
+    connectedCallback(){
+
+        if (!RaceHorse.listenerReadySetGo){
+            RaceHorse.listenerReadySetGo = true;
+            document.addEventListener("race-start", (event)=> {
+                if (!RaceHorse.listenerHorseStartRunning){
+                    RaceHorse.listenerHorseStartRunning = true;
+
+                    document.addEventListener("keyup", RaceHorse.handleKeyPress);
+                }
+            })
+        }
+    }
+
+    resetEventListeners() {
+        if (!RaceHorse.listenerReadySetGo){
+            RaceHorse.listenerReadySetGo = true;
+            document.addEventListener("race-start", (event)=> {
+                if (!RaceHorse.listenerHorseStartRunning){
+                    RaceHorse.listenerHorseStartRunning = true;
+
+                    document.addEventListener("keyup", RaceHorse.handleKeyPress);
+                }
+            });
+        }
+    }
+
+    fireEvent() {
+        this.dispatchEvent(
+            new CustomEvent("race-finished", {
+                detail: {
+                    winner: this.horseElement.dataset.name,
+                    key: this.horseElement.dataset.key
+                },
+                bubbles: true,
+                composed: true
+            })
+        );
     }
 
     horseTemplate(name, key) {
