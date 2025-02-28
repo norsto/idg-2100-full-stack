@@ -1,0 +1,65 @@
+...
+
+REST API Examples
+    https://docs.github.com/en/rest/apps/apps?apiVersion=2022-11-28#create-a-github-app-from-a-manifest 
+    aws 
+
+REAT API Tools
+    postman
+    github.com/
+    RestMan (chrome extention)
+
+REST API Best Practices
+    Designing for real life use cases
+        Think about the developers who are using your API. What tasks should they be able to 
+    make it fast and easy to get started
+    Consistency
+    Errors: make troubleshooting as easy as possible
+
+REST API Design Steps
+    Define business objectives 
+    List user stories (tsrgeting other developers)
+    Outlining all possible groups of errors 
+        Rate limiting
+        Missing parameters
+        . .. there were many 
+    Decide on your resourses (and URIs)
+    Detail request parameters (what's required and optional)
+    Detail the shape of responses
+    Accont for errors
+
+Design an API Spesification - 20 min 
+    You're developing an API for a local library. Multiple other teams/companies will work on the 
+    client side. You only focus on the API. Account for books and users, at least.
+    Have
+        User stories 
+            As an user of the library platform, I want to be able to browse books w/o having to create a profile
+            As an user ladida, I want to search books by title 
+            As an user ladida, I want to search books by author name
+            As an user ladida, I want to search books by keywords
+            As ...., I want to search books by genre 
+            As an user of the library platform, I want to be able to create a profile so I can borrow books 
+            As an user ladida, I want to be able to borrow books safely 
+            As a librarian user of the library platform, I want to be able to look at which books are currently 
+            borrowed, when they're due for being back, and what books are currently available to be borrowed,
+            and which users is borrowing what
+        Error categories 
+            Invalid input 
+            Doesn't exist
+            Request Timeout 
+            DNS failure
+        Endpoint descriptions 
+            URIs                Inputs              Outputs
+            GET /users          *users/none         Show all users
+            GET /users/id       {user id}           Shows one spesific user
+            POST /user          create profile      Adds a new profile/user 
+            GET /books          *books/none         Shows all books  
+            GET /books/genre    genre name          Shows all books under a spesific genre 
+
+Endpoints - 60 min 
+    Get in pairs 
+    Gat data from https://aliaksem.folk.ntnu.no/books.json 
+    One person implents the API using Express
+    The other person implement a client 
+    Allow at least for books listing, search, pagination, and detail display
+    [Extra] ion wanna 
