@@ -18,8 +18,7 @@ export const createBookValidatorArr = [
         .withMessage("has to be approved genre: ", acceptedGenres.joir(", "))
 ];
 
-
-const findBookValidatorArr = [
+export const findBookValidatorArr = [
     params("bookid")
         .isString()
         .withMessage("the book you're looking for doesn't exist")
@@ -27,7 +26,7 @@ const findBookValidatorArr = [
 
 const searchByAllowedOptions = ["title", "genre", "author"];
 
-const findBooksValidatorArr = [
+export const findBooksValidatorArr = [
     query("searchBy")
         .isString()
         .isIn(searchByAllowedOptions),
@@ -43,3 +42,4 @@ const findBooksValidatorArr = [
         .withMessage("You can only sort by", searchByAllowedOptions.join(", "))
 ]   
 
+export const validationResult = validate; //Idk it's probably not right rip

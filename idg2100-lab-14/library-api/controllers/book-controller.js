@@ -33,3 +33,11 @@ export function createABook(req, res) {
 export function updateABook(req, res) {
 
 }
+
+export function getBook(req, res) {
+
+}
+
+export function deleteBook(req, res) {
+    
+}
