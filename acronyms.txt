@@ -23,3 +23,11 @@ DOM     Document Object Model
 rss     resident set size
 wc      Web Component
 UI      User Interface
+URI     Uniform Resource Identifier 
+DNS     Domain Name System 
+ACID    Atomicity Consistency Isolation Durability
+CAP     Consistency, Availability, Participation tolerance
+BASE 
+BSON    Binary JSON 
+CORS    Cross Origin Resource Sharing
+DOS     Denial of Service 
