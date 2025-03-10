@@ -29,3 +29,5 @@ ACID    Atomicity Consistency Isolation Durability
 CAP     Consistency, Availability, Participation tolerance
 BASE 
 BSON    Binary JSON 
+CORS    Cross Origin Resource Sharing
+DOS     Denial of Service 

@@ -1,0 +1,32 @@
+Having a look at oblig 2 
+
+Tasks From Last Class
+    Finish scaffolding your express API for libraries 
+    Connect it to MongoDB 
+        Define models using Mongoose 
+        "seed" your db 
+        Have data validation and appropriate messages 
+        Allow for book listing, search, filtering, pag...
+
+
+LIBRARY-API
+- Define endpoints 
+- Create project structure 
+- Define schemas
+
+ENDPOINTS:
+[GET, POST] /books 
+[GET, PUT, DELETE] /books/:bookid 
+
+[GET, POST] /users 
+[GET, PUT, DELETE] /users/:userid
+
+[GET, POST] /users/:userid/borrowed-books
+[GET, DELETE] /users/:userid/borrowed-books/:bookid
+
+SEARCH (ex):
+[GET] /books?searchBy=author&value=
+
+COLLECTIONS:
+- books 
+- users 
