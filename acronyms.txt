@@ -31,3 +31,4 @@ BASE
 BSON    Binary JSON 
 CORS    Cross Origin Resource Sharing
 DOS     Denial of Service 
+MERN    MongoBD, Express, React, and Node
