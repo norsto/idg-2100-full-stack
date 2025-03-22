@@ -1,0 +1,169 @@
+Data Validation, Routers, Best Practices
+
+User Input Validation and Sanitization 
+
+Definitions 
+    Data validation 
+        Ensuring your input data are correct, meaningful and expected 
+
+    Data Sanitization
+        ...
+
+Why Sanitization Examples
+    People can set up a profile using code to redirect to a malicious website
+    People sending in code snippets for any inputfields, so on 
+
+Express Validation 
+    A nodejs library, primarily for Express.js 
+    A wrapper over validator.js 
+        https://github.com/validatorjs/validator.js 
+    ...
+    Why express-validator... if Mongoose schema 
+        Cleaner structure for your code 
+        Some business logic may run before we reach Mongoose schemas, and rely on bad data 
+        Mongoose offers only rudimentary built-in validators
+
+Express Validator Basic Usage (pp)
+
+Express Validator 
+    Should be used as middleware 
+    Can be used for validating:
+        req.body
+        ...
+    Multiple rules can be chained for the same property 
+    Runs for every defined rule, even if a rule before it failed 
+    ...
+    ...
+    The order of rules is important: Sanitizers transform input for follow up validation rules 
+        body('username').notEmpty().trim()
+        VS 
+        body('username').trim().notEmpty()
+    Use "const data = matchedData(req)" to access validated/sanitized data
+        Returns data from all sources (body, query, params, etc)
+        Doesn't return optional inputs if they aren't present
+
+Most Used Built-in Express Validator 
+    isEmail()
+    isLength()
+    isInt()
+    isAlphanumeric()
+    isAlpha()
+    isNumeric()
+    isDate()
+    isURL()
+    ...
+    Have a look at the linked repository
+
+Built-in Sanitizers
+    escape()
+    trim()
+    tiInt()
+    toFloat()
+    toDate()
+    blacklist()/whitelist()
+
+Custom Validators (pp)
+
+Express Routers 
+    Identical in usage app-level routing 
+    Allows for separating route defenition in smaller managable chunks 
+    Allows for grouping ....
+    Example in pp 
+
+Express App Structure
+    MVC in Practice 
+        View 
+        ^  v
+        Controller
+        ^  v
+        Model
+    
+    MVCS
+        View        Front-end
+        ^  v
+        Controller  
+        ^  v        Back-end
+        Service 
+        ^  v
+        Model       DB
+
+    Sepatation of concern
+
+    MVCS Mapped on Servers/Containers
+
+    Back-End Structure 
+        server.js
+            v
+        routers 
+            v
+        controllers 
+            v
+        service
+            v
+        models
+
+        Server.js 
+            Entry point for your app; where you call app.listen and mount routers 
+        
+        Routers 
+            Define routes for spesific parts of application ...
+        
+        Controllers 
+            Contain request...
+
+        Have separate directories for 
+            Express.js routers 
+            Express.js ....
+            Manymanythings...
+
+Express App Best Practices 
+    Environment Files 
+        Store sensitive info such as API keys, db credentials, and other environment-spesific configuration data in .env files
+        ....
+    
+    Consisten File Naming Conventions 
+        Establish and follow consistent naming conventions for your files, e.g., camelCase, kebab-case, or dot.notation
+        camelCase may cause problems, Linux is case sensitive, while Windows isn't....
+    
+    Handling User Files
+        Rename Files 
+            Avoid using user-uploaded file names directly to prevent malicious file access 
+
+        Avoid Static Directory 
+            Store files outside of publicly accessible directories unless the files needs to be visible to all
+
+        Validate MIME Types 
+            Only accept file types that are explicitly permitted, and verify files' content type
+
+        Limit File Size 
+            Enforce file size limits to avoid server overload 
+
+        Email Confirmation
+            Require email Confirmation before processing or storing user-uploaded files to prevent...
+
+    Security 
+        Rely on the low-hanging fruit - use existing security middleware 
+            Helmet - adds security headers to responses 
+            cors - to handle CORS (Cross Origin Resource Sharing)
+            express-rate-limit - to prevent your service abuse (DOS attacks)
+        
+    Blocking Operations 
+        Don't use them (no readFileSync, etc)
+        Rely on the async versions of long-running functions 
+        Outsource long-running computations to an external service (can be on the same serverm but not the same app as ...)
+
+    Caching 
+        Set caching-related headers for infrequently changing resources 
+        Rely on caching-capable web servers (Apache, Nginx) as reverse proxies to cache non-file resources 
+        Rely on external servers to return static resources - to offload computation from your NodeJS backend 
+    
+    Logging 
+        Set up external-file logging (not just console.log...)
+        You can use logs for post-mortem analysis and performance tracking
+        Set up email alerts for exceptional cases (...)
+    
+    API Versioning 
+        Use API versioning to ensure backward compatibility when making changes to your API 
+        This allws you to introduce few features and improvements without breaking existing client applications 
+        Example: /api/v1/....
+

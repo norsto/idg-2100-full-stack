@@ -1,0 +1,192 @@
+Recap: ACID Transaction
+    Atomicity
+    Consistency
+    Isolaton
+    Durability
+
+Types of Databases
+    Flat-file databases 
+        Often as text files, with each line as a record, e.g. CSV
+    
+    Hierarchical Datatbases
+        Support parent-child relationships; resemble file systems
+    
+    Relational
+        Tables, with primary/foreign keys connecting different Tables
+    
+    NoSQL 
+        Collections instead of tables, and documents instead of record/rows
+
+Recap: Database Normalization
+    Restrucuring a database to remove redundancy from it (e.g., info is never duplicated and stored only once)
+
+    Normalization Benefits
+        Eliminates redundancy
+        Ensures data integrity and consistency 
+        Better record insert/update/delete performance
+
+Relational Database Schema 
+
+Recap: Primary and Foreign Keys 
+    Primary Keys   
+        A field in atable; a unique identifier for a record in the table 
+    Foreign Key 
+        ...
+    ...
+
+NoSQL Databases 
+    Schema-less (or flexible schema)
+    No database-level ACID guarantees 
+    Emphasize availability over consistency
+    Work well as distributed databases 
+
+CAP Theorem 
+    Consistency
+    Availability 
+    Partition tolerance 
+    In distributed dbses (for performance), you can only have 2 out of 3
+
+ACID vs BASE 
+    ACID - relation dbses (atomic, consistent, isolated, durable)
+    BASE - noSQL dbses (basically abailable, soft state, eventually consistent)
+        NoSQL dbses can still be ACID-compliant at the collection level (not entire db level)
+
+MongoDB 
+    Document-oriented noSQL db
+    Stores documents in collections 
+    Stores documents using BSON (binary JSON)
+    Supports sharding (horizontal scaling (buying more servers?)), ACID transactions (esp. from v4), indexing, and aggregation
+    Prioritizes availability over consistency
+    Prioritizes (in general ig)
+
+    Documents 
+        Equalients of records/rows in relational dbses 
+        But can have any structure, including nested object/arrays
+        Have an _id field by default
+        No enforced schema by default (it's left up to the application layer)
+
+    No Enforced Schema 
+        Any shape of stored documents in a collection 
+        Documents in a collection can differ 
+        Documents in a collection can change (without needing ALTER SQL queries)
+        Information can be (partially) duplicated collections 
+
+    BSON 
+        Binary JSON - resembles JSON, but stores data in binary format instead of plain text 
+        Supports (more) data types, incl. Date, 32/64 bit integers, 128-bit decimals, and regular expressions
+        Takes up slightly more space than JSON, but is more efficient reading and parsing documents 
+
+    Information Duplication
+        Embedding - including related data in a document directly, instead of linking to it, so, it's all returned in a single query (no JOINs)
+        Partial embedding - including only a part of the data in a document directly; useful when only part of the data is used frequently 
+                            (e.g. username/surname in a "blogpost" collection, and not all of user profile info)
+        Referencing still possible, but more expensive
+
+    MongoDB vs Relational Dbses 
+        Documents vs tables 
+        Schema-less vs fixed schema
+        Embedding vs referencing 
+        ACID transactions ...
+        ... 
+        Choose MongoDB
+            Flexible or evolving schema
+            Availability is important 
+            Scaling horizontally 
+            Infrequent updates to related documents 
+            Scenarios: real-time analytics (e.g. comments and likes on a YT video), content management, IoT apps 
+
+        Choose a Relational Db
+            Structured data with clear relationships 
+            Consistency is crucial 
+            Can only scale vertically 
+            Frequent updates to records in related tables 
+            Scenarios: accounting, finance, banking, inventory management systems 
+
+    MongoDB in Practice 
+        Open-source, agile db. Stores documents as JSON objects that can quickly change the schema needs. 
+
+    Installation 
+        mongodb.com 
+        install mongodb 
+        install mongosh
+        install Compass 
+    
+    Config Options 
+        systemLog:
+            destination: file 
+            path: "/var/log/mongodb/mongod.log"
+            logAppend: true 
+        processManagement:
+            fork: true 
+        net: 
+            bindIp:
+            port:
+        setParameter:
+            ...
+
+    Connection String 
+        mongodb://localhost:27017
+        ...
+
+    Connecting 
+        const {MongoClient} = require('mongodb');
+        ...
+        await client.close();
+        
+    MongoDB Commands
+        client.connect()
+        .find({})
+        ...
+    
+    Mongo Shell Basic Commands 
+        show dbs 
+        db
+        show collections 
+        use dbName 
+        db.dropDatabase() 
+        db.createCollection("collectionName")
+        (can see more of them at mongodb.com)
+    
+    MongoDB CRUD 
+        collection.findOne({});
+        .find 
+        .insertOne
+        .insertMany 
+        .updateOne
+        .updateMany
+        .replaceOne 
+        .deleteOne
+        .deleteMany 
+
+    Operators 
+        $in 
+        $or 
+        more on mongodb.com 
+
+    Have a look at getting started with mongodb on their website ig 
+
+    Sidenote: app architecture 
+        Response        Request
+             ^             v
+            Web Server Layer 
+             ^             v
+            Application Layer 
+             ^             v
+                Db Layer
+
+
+Practice Tasks 
+    1. Install MongoDB, mongosh, Compass 
+        1.1 Use a non-default config 
+        1.2 configure logs and database itself in spesific places 
+        1.3 issue commands via shell (list dbses abd collections, create a collection)
+        1.4 view results graphically (Compass)
+    2. NodeJS: generate 10 random ids (numbers, 1-100)
+        2.1 check if they are already in a collection; if not; save them; if yes, log a message
+        2.2 repeat it 3 times, view the results in Compass
+    3. NodeJS + FrontEnd: Save the coordinates of user clicks on a page  
+        3.1 a page with a rectangular area (no other content)
+        3.2 log the coords of user clicks to console 
+        3.3 have an express server with a route to accept click coords 
+        3.4 save the coords in a collection 
+        3.5 view results in compass

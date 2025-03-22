@@ -1,0 +1,19 @@
+Start working in oblig two (I'm 1 hour late rip)
+
+GET/quiz
+
+how do you store the answers to the quiz 
+
+Find a way to calculate the average (of how many got the correct answers)
+
+Be able to show the final score 
+
+Be able to identify sessions/users
+
+    Storing info by index(?) or maybe not?
+    Null paramater for unanswered questions 
+        Takes up place in the db tho, so maybe not the best solution 
+
+        Map it into the db (well)
+
+"It looks very easy" it does not 
