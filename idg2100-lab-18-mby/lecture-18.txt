@@ -1,0 +1,85 @@
+React Components Recap
+    Components in REACT are functions* that take props as inputs and produce JSX as output 
+
+useRef 
+    To "remember" something btween re-renders of a component 
+    Similar to state, but doesn't trigger re-rendering 
+    ...
+
+Access to DOM: ref + useRef
+    Sometimes yuo want to access DOM directly 
+        To focus an input
+        Measure element dimentions 
+        Get element position 
+        Provide a reference to an element to a 3rd party library that require it 
+        Complex animations
+
+    import {useRef} from 'react';
+
+    export default function Form() {
+        const inputRef = useRef(null);
+
+        function handleClick() {
+            inputRef.current.focus();
+        }
+
+        return (
+            <html-stuff>
+        );
+    }
+
+Reusing Code in Hooks 
+    Imagine that several of your components perform the same set of actions, e.g., fetching the same data, 
+    keeping track of user authentication status, or handling forms
+    How would you avoid code duplication?
+
+Custom Hooks
+    Primary purpose: re-using ...
+    (probably maintainability, dry, etc)
+
+    finally will run regardless of reaction to previous outputs 
+
+Performance Optimization: memo 
+    Sometimes you want to avoid re-rendering a component if its props are unchanged
+    Note: use sparingly, mostly for very frequently updated components in performance-critical cases 
+        Else, you face higher chances of bugs...
+
+    import { memo } from 'react';
+
+    export const MemorizedCounter = memo(
+        ({ count, name }) => {
+            console.log('memorized component re-rendered');
+            return (
+                ...
+            );
+        },
+        (prevProps, nextProps) => {
+            return...
+        }
+    );
+
+<StrictMode> 
+    To find bugs more easily
+        Your components will re-render an extra time to find bugs caused by impure rendering 
+        Your components will re-run Effects an extra time to find bugs caused by missing Effect cleanup
+        --||-- refs callback --||--
+        --||-- checked for usage...
+
+<Suspense> 
+    To display something while content is loading 
+    Somewhat better than conditional rendering:
+        No need for a isLoading stat variable
+        Declarative handling of loading conditions - reduces the chanses of bugs 
+
+    import { Suspense } from 'react';
+
+Practice 
+
+Task 4 
+    allow for shopping item deletion (e.g., with a button next to each item)
+    add a component to add new shopping items 
+    save shopping list when the list is modified 
+    [extra] add a "switch" component that toggles between light and dark theme 
+        rely on contexts
+    [extra] use Suspense to show that data are loading (when loading from backend)
+    [extra] use Suspense to show the new data being saved (when adding an item)
