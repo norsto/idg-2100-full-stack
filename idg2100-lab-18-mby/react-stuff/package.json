@@ -1,0 +1,25 @@
+{
+  "name": "react",
+  "version": "1.0.0",
+  "description": "",
+  "homepage": "https://github.com/norsto/idg-2100-full-stack#readme",
+  "bugs": {
+    "url": "https://github.com/norsto/idg-2100-full-stack/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/norsto/idg-2100-full-stack.git"
+  },
+  "license": "ISC",
+  "author": "",
+  "type": "commonjs",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "fs": "^0.0.1-security",
+    "react-dom": "^19.0.0"
+  },
+  "devDependencies": {}
+}

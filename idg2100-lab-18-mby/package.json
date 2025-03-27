@@ -1,0 +1,25 @@
+{
+  "name": "lecture-lab-15",
+  "version": "1.0.0",
+  "description": "",
+  "homepage": "https://github.com/norsto/idg-2100-full-stack#readme",
+  "bugs": {
+    "url": "https://github.com/norsto/idg-2100-full-stack/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/norsto/idg-2100-full-stack.git"
+  },
+  "license": "ISC",
+  "author": "Nora",
+  "type": "commonjs",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "express": "^4.21.2",
+    "fs": "^0.0.1-security"
+  },
+  "devDependencies": {}
+}
