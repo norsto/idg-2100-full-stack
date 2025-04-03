@@ -1,0 +1,8 @@
+help 
+
+Tasks For Today
+...
+
+You can use 
+    node --watch server.js 
+so that you don't have to restart the server everytime you make a change to your code 
