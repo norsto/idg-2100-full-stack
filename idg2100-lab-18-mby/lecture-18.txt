@@ -76,6 +76,7 @@ Performance Optimization: memo
 Practice 
 
 Task 4 
+    starting from where we stopped in class: https://github.com/aliakseix/IDG2100_25_shopping_list
     allow for shopping item deletion (e.g., with a button next to each item)
     add a component to add new shopping items 
     save shopping list when the list is modified 
